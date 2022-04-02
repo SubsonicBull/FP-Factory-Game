@@ -5,19 +5,22 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public Transform cam;
+    
     public float speed;
     public float gravity;
+    public float gridsize = 10;
+    public float distancetoground;
     public CharacterController crcon;
     public Transform groundcheck;
-    public float distancetoground;
+    public Transform cam;
     public LayerMask ground;
     Vector3 velocity;
-    bool isGrounded;
+    bool isGrounded;    
+    int selectediventorySlot;    
+    RaycastHit hit;    
+    Vector3 calculatedGridPos;
     public Image[] inventorySlots = new Image[5];
-    int selectediventorySlot;
     public GameObject[] placableObjects = new GameObject[5];
-    RaycastHit hit;
 
 
     private void Start()
@@ -64,6 +67,7 @@ public class Player : MonoBehaviour
         }
 
         //PlacementSystem
+
         
         if (Input.GetButtonDown("Fire1"))
         {            
@@ -71,7 +75,9 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(cam.transform.position, cam.transform.forward,out hit, 20, ground))
             {                
                     Debug.Log(selectediventorySlot);
-                    Instantiate(placableObjects[selectediventorySlot], new Vector3(Mathf.Round(hit.point.x /10) * 10, Mathf.Round(hit.point.y / 10) * 10, Mathf.Round(hit.point.z / 10) * 10), Quaternion.Euler(0f, 0f, 0f));
+                //Instantiate(placableObjects[selectediventorySlot], new Vector3(Mathf.Round(hit.point.x /10) * 10, Mathf.Round(hit.point.y / 10) * 10, Mathf.Round(hit.point.z / 10) * 10), Quaternion.Euler(0f, 0f, 0f));
+                calculatedGridPos = new Vector3(Mathf.Floor(hit.point.x / gridsize) * gridsize + gridsize/2,1.5f, Mathf.Floor(hit.point.z / gridsize) * gridsize + gridsize / 2);
+                Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));                
             }
         }
         

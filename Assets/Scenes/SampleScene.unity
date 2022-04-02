@@ -3107,12 +3107,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b566c5adcbe11124fa674f80cee1f5a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1109188615419693045}
   speed: 10
   gravity: -1
+  gridsize: 10
+  distancetoground: 1
   crcon: {fileID: 8503714570595539316}
   groundcheck: {fileID: 6340845660574798242}
-  distancetoground: 1
+  cam: {fileID: 1109188615419693045}
   ground:
     serializedVersion: 2
     m_Bits: 64
