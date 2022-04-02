@@ -1,9 +1,11 @@
 ﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public Transform cam;
     public float speed;
     public float gravity;
     public CharacterController crcon;
@@ -12,11 +14,22 @@ public class Player : MonoBehaviour
     public LayerMask ground;
     Vector3 velocity;
     bool isGrounded;
-    
+    public Image[] inventorySlots = new Image[5];
+    int selectediventorySlot;
+    public GameObject[] placableObjects = new GameObject[5];
+    RaycastHit hit;
 
-    
+
+    private void Start()
+    {
+        selectediventorySlot = 0;
+        inventorySlots[selectediventorySlot].color = new Color(255, 255, 0);
+    }
+
     void Update()
     {
+        //movement
+
         isGrounded = Physics.CheckSphere(groundcheck.position, distancetoground, ground);
 
         if(isGrounded)
@@ -31,5 +44,36 @@ public class Player : MonoBehaviour
         crcon.Move(move * speed * Time.deltaTime);
         velocity.y += gravity * Time.deltaTime;
         crcon.Move(velocity);
+
+        //Inventory
+
+        if (Input.GetKeyDown("f"))
+        {
+            if (selectediventorySlot == 4)
+            {
+                inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
+                selectediventorySlot = 0;
+                inventorySlots[selectediventorySlot].color = new Color(255, 255, 0);
+            }
+            else
+            {
+                inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
+                selectediventorySlot += 1;
+                inventorySlots[selectediventorySlot].color = new Color(255, 255, 0);
+            }
+        }
+
+        //PlacementSystem
+        
+        if (Input.GetButtonDown("Fire1"))
+        {            
+            
+            if (Physics.Raycast(cam.transform.position, cam.transform.forward,out hit, 20, ground))
+            {                
+                    Debug.Log(selectediventorySlot);
+                    Instantiate(placableObjects[selectediventorySlot], new Vector3(Mathf.Round(hit.point.x /10) * 10, Mathf.Round(hit.point.y / 10) * 10, Mathf.Round(hit.point.z / 10) * 10), Quaternion.Euler(0f, 0f, 0f));
+            }
+        }
+        
     }
 }
