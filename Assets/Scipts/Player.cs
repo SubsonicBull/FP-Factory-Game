@@ -39,13 +39,16 @@ public class Player : MonoBehaviour
         {
             velocity.y = 0;
         }
+        else
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
         crcon.Move(move * speed * Time.deltaTime);
-        velocity.y += gravity * Time.deltaTime;
         crcon.Move(velocity);
 
         //Inventory
@@ -73,9 +76,7 @@ public class Player : MonoBehaviour
         {            
             
             if (Physics.Raycast(cam.transform.position, cam.transform.forward,out hit, 20, ground))
-            {                
-                    Debug.Log(selectediventorySlot);
-                //Instantiate(placableObjects[selectediventorySlot], new Vector3(Mathf.Round(hit.point.x /10) * 10, Mathf.Round(hit.point.y / 10) * 10, Mathf.Round(hit.point.z / 10) * 10), Quaternion.Euler(0f, 0f, 0f));
+            {                               
                 calculatedGridPos = new Vector3(Mathf.Floor(hit.point.x / gridsize) * gridsize + gridsize/2,1.5f, Mathf.Floor(hit.point.z / gridsize) * gridsize + gridsize / 2);
                 Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));                
             }

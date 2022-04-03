@@ -3108,7 +3108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  gravity: -1
+  gravity: -0.05
   gridsize: 10
   distancetoground: 1
   crcon: {fileID: 8503714570595539316}
