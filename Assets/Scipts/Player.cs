@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         selectediventorySlot = 0;
-        inventorySlots[selectediventorySlot].color = new Color(255, 255, 0);
+        inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
     }
 
     void Update()
@@ -57,15 +57,15 @@ public class Player : MonoBehaviour
         {
             if (selectediventorySlot == 4)
             {
-                inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
+                inventorySlots[selectediventorySlot].color = new Color(0, 0, 0);
                 selectediventorySlot = 0;
-                inventorySlots[selectediventorySlot].color = new Color(255, 255, 0);
+                inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
             }
             else
             {
-                inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
+                inventorySlots[selectediventorySlot].color = new Color(0, 0, 0);
                 selectediventorySlot += 1;
-                inventorySlots[selectediventorySlot].color = new Color(255, 255, 0);
+                inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
             }
         }
 
