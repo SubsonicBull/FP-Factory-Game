@@ -17,10 +17,11 @@ public class Player : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;    
     int selectediventorySlot;    
-    RaycastHit hit;    
+    RaycastHit hit;       
     Vector3 calculatedGridPos;
     public Image[] inventorySlots = new Image[5];
     public GameObject[] placableObjects = new GameObject[5];
+    GameObject lastInstantiatedObject;
 
 
     private void Start()
@@ -73,14 +74,14 @@ public class Player : MonoBehaviour
 
         
         if (Input.GetButtonDown("Fire1"))
-        {            
-            
+        {                        
             if (Physics.Raycast(cam.transform.position, cam.transform.forward,out hit, 20, ground))
-            {                               
-                calculatedGridPos = new Vector3(Mathf.Floor(hit.point.x / gridsize) * gridsize + gridsize/2,1.5f, Mathf.Floor(hit.point.z / gridsize) * gridsize + gridsize / 2);
-                Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));                
+            {                                    
+                    calculatedGridPos = new Vector3(Mathf.Floor(hit.point.x / gridsize) * gridsize + gridsize / 2, 1.5f, Mathf.Floor(hit.point.z / gridsize) * gridsize + gridsize / 2);
+                    lastInstantiatedObject = Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));                          
             }
         }
         
     }
+    
 }

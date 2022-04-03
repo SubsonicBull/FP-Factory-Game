@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4980722075824604168}
   - component: {fileID: 5833462917719991845}
   - component: {fileID: 1588908815408873396}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 2417909038582302612}
   - component: {fileID: 4020865012114056672}
   - component: {fileID: 2181727135138392954}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 8808530159970679374}
   - component: {fileID: 5589516994519168491}
   - component: {fileID: 7671041244272918817}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bohrer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

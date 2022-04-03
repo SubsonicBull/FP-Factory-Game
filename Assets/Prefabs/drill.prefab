@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3196577393838581843}
   - component: {fileID: 844549715891199129}
   - component: {fileID: 5040384068646017548}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: drill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 1329495711408027682}
   - component: {fileID: 1573328667146339131}
   - component: {fileID: 4994949265629719598}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: motor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 8948204517765582678}
   - component: {fileID: 987020097712542945}
   - component: {fileID: 1793525106963671548}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: drillbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
