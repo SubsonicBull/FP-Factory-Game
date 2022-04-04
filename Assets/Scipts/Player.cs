@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public Image[] inventorySlots = new Image[5];
     public GameObject[] placableObjects = new GameObject[5];
     GameObject lastInstantiatedObject;
+    List<Vector3> positionsOfPlacedObjects = new List<Vector3>();
 
 
     private void Start()
@@ -77,11 +78,21 @@ public class Player : MonoBehaviour
         {                        
             if (Physics.Raycast(cam.transform.position, cam.transform.forward,out hit, 20, ground))
             {                                    
-                    calculatedGridPos = new Vector3(Mathf.Floor(hit.point.x / gridsize) * gridsize + gridsize / 2, 1.5f, Mathf.Floor(hit.point.z / gridsize) * gridsize + gridsize / 2);
-                    lastInstantiatedObject = Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));                          
+                calculatedGridPos = new Vector3(Mathf.Floor(hit.point.x / gridsize) * gridsize + gridsize / 2, 1.5f, Mathf.Floor(hit.point.z / gridsize) * gridsize + gridsize / 2);
+                if (!positionsOfPlacedObjects.Contains(calculatedGridPos))
+                {
+                    lastInstantiatedObject = Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));
+                    positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position);
+                }                                           
             }
         }
-        
+        if (Input.GetKeyDown("t"))
+        {
+            foreach (Vector3 vector3 in positionsOfPlacedObjects)
+            {
+                Debug.Log(vector3);
+            }
+        }
     }
     
 }
