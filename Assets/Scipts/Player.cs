@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public CharacterController crcon;
     public Transform groundcheck;
     public Transform cam;
+    public GameObject cantPlaceHereText;
     public LayerMask ground;
     Vector3 velocity;
     bool isGrounded;    
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
     {
         selectediventorySlot = 0;
         inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
+        cantPlaceHereText.SetActive(false);
     }
 
     void Update()
@@ -83,7 +85,12 @@ public class Player : MonoBehaviour
                 {
                     lastInstantiatedObject = Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));
                     positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position);
-                }                                           
+                }
+                else
+                {
+                    cantPlaceHereText.SetActive(true);
+                    Invoke("CantPlaceTextMethod", 2.0f);
+                }
             }
         }
         if (Input.GetKeyDown("t"))
@@ -94,5 +101,8 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
+    void CantPlaceTextMethod()
+    {
+        cantPlaceHereText.SetActive(false);
+    }
 }
