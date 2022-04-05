@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3196577393838581843}
   - component: {fileID: 844549715891199129}
   - component: {fileID: 5040384068646017548}
+  - component: {fileID: 3104889979369939383}
   m_Layer: 7
   m_Name: drill
   m_TagString: Untagged
@@ -97,6 +98,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7905946852959298603, guid: d4c9cdc8ee9b56a4aaa3588b3ab08c3f, type: 3}
+--- !u!114 &3104889979369939383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204867990591749452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3292dabcd425241b66f4bc8ebfad61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4210174100779375231}
 --- !u!1 &3440833019506397441
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,6 +123,7 @@ GameObject:
   - component: {fileID: 1329495711408027682}
   - component: {fileID: 1573328667146339131}
   - component: {fileID: 4994949265629719598}
+  - component: {fileID: 4210174100779375231}
   m_Layer: 7
   m_Name: motor
   m_TagString: Untagged
@@ -194,6 +209,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8801825067470630422, guid: d4c9cdc8ee9b56a4aaa3588b3ab08c3f, type: 3}
+--- !u!95 &4210174100779375231
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3440833019506397441}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2854642f79e3ae44b9083940e1a863a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4952467976775520442
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +254,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4952467976775520442}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.022508377, y: -6.3552475, z: 0}
   m_LocalScale: {x: 0.29439798, y: 1, z: 0.29439798}
   m_Children: []
