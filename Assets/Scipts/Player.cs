@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public Transform groundcheck;
     public Transform cam;
     public GameObject cantPlaceHereText;
+    public GameObject flashlight;
     public LayerMask ground;
     Vector3 velocity;
     bool isGrounded;    
@@ -83,8 +84,25 @@ public class Player : MonoBehaviour
                 calculatedGridPos = new Vector3(Mathf.Floor(hit.point.x / gridsize) * gridsize + gridsize / 2, 1.5f, Mathf.Floor(hit.point.z / gridsize) * gridsize + gridsize / 2);
                 if (!positionsOfPlacedObjects.Contains(calculatedGridPos))
                 {
-                    lastInstantiatedObject = Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));
-                    positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position);
+                    if (selectediventorySlot != 3)
+                    {
+                        lastInstantiatedObject = Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));
+                        positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position);
+                    }
+                    else
+                    {
+                        if (!positionsOfPlacedObjects.Contains(calculatedGridPos + new Vector3(gridsize, 0, 0)))
+                        {
+                            lastInstantiatedObject = Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));
+                            positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position);
+                            positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position + new Vector3(gridsize, 0, 0));
+                        }
+                        else
+                        {
+                            cantPlaceHereText.SetActive(true);
+                            Invoke("CantPlaceTextMethod", 2.0f);
+                        }
+                    }
                 }
                 else
                 {
@@ -99,6 +117,14 @@ public class Player : MonoBehaviour
             {
                 Debug.Log(vector3);
             }
+        }
+        if (Input.GetButton("Fire2"))
+        {
+            flashlight.SetActive(true);
+        }
+        else
+        {
+            flashlight.SetActive(false);
         }
     }
     void CantPlaceTextMethod()

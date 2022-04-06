@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0.248576, g: 0.2888443, b: 0.3962264, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -1008,7 +1008,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -304}
+  m_AnchoredPosition: {x: 0, y: -172}
   m_SizeDelta: {x: 260.5, y: 49.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1207842668
@@ -3242,7 +3242,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.18433283, g: 0.16260235, b: 0.3962264, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3384,6 +3384,7 @@ MonoBehaviour:
   groundcheck: {fileID: 6340845660574798242}
   cam: {fileID: 1109188615419693045}
   cantPlaceHereText: {fileID: 1207842666}
+  flashlight: {fileID: 948729044}
   ground:
     serializedVersion: 2
     m_Bits: 64
@@ -3397,7 +3398,7 @@ MonoBehaviour:
   - {fileID: 8175721272952332532, guid: 7247d6e6d7c81ad45be4d57b8e4c6138, type: 3}
   - {fileID: 3804396515690487706, guid: e679caad3f87f8c4b81d20c5d38b683e, type: 3}
   - {fileID: 1204867990591749452, guid: d5e66cee61b1f674a9c6f50d2cd799fb, type: 3}
-  - {fileID: 1204867990591749452, guid: d5e66cee61b1f674a9c6f50d2cd799fb, type: 3}
+  - {fileID: 288541349034396625, guid: fcd33f22e01545d409b09e0a85c71f8c, type: 3}
   - {fileID: 1204867990591749452, guid: d5e66cee61b1f674a9c6f50d2cd799fb, type: 3}
 --- !u!4 &6340845660574798242
 Transform:
