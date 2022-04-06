@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
         selectediventorySlot = 0;
         inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
         cantPlaceHereText.SetActive(false);
+        flashlight.SetActive(false);
     }
 
     void Update()
@@ -118,13 +119,18 @@ public class Player : MonoBehaviour
                 Debug.Log(vector3);
             }
         }
-        if (Input.GetButton("Fire2"))
+
+        if (Input.GetKeyDown("b"))
         {
-            flashlight.SetActive(true);
-        }
-        else
-        {
-            flashlight.SetActive(false);
+            if(flashlight.activeSelf == true)
+            {
+                flashlight.SetActive(false);
+            }
+            else
+            {
+                flashlight.SetActive(true);
+            }
+
         }
     }
     void CantPlaceTextMethod()
