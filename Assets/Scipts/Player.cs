@@ -15,7 +15,9 @@ public class Player : MonoBehaviour
     public Transform cam;
     public GameObject cantPlaceHereText;
     public GameObject flashlight;
+    public GameObject buildUI;
     public LayerMask ground;
+    public bool buildmode;
     Vector3 velocity;
     bool isGrounded;    
     int selectediventorySlot;    
@@ -33,6 +35,8 @@ public class Player : MonoBehaviour
         inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
         cantPlaceHereText.SetActive(false);
         flashlight.SetActive(false);
+        buildmode = false;
+        buildUI.SetActive(false);
     }
 
     void Update()
@@ -61,57 +65,77 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown("f"))
         {
-            if (selectediventorySlot == 4)
+            if(buildmode == true)
             {
-                inventorySlots[selectediventorySlot].color = new Color(0, 0, 0);
-                selectediventorySlot = 0;
-                inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
-            }
-            else
-            {
-                inventorySlots[selectediventorySlot].color = new Color(0, 0, 0);
-                selectediventorySlot += 1;
-                inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
+                if (selectediventorySlot == 4)
+                {
+                    inventorySlots[selectediventorySlot].color = new Color(0, 0, 0);
+                    selectediventorySlot = 0;
+                    inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
+                }
+                else
+                {
+                    inventorySlots[selectediventorySlot].color = new Color(0, 0, 0);
+                    selectediventorySlot += 1;
+                    inventorySlots[selectediventorySlot].color = new Color(255, 255, 255);
+                }
             }
         }
 
         //PlacementSystem
 
-        
         if (Input.GetButtonDown("Fire1"))
-        {                        
-            if (Physics.Raycast(cam.transform.position, cam.transform.forward,out hit, 20, ground))
-            {                                    
-                calculatedGridPos = new Vector3(Mathf.Floor(hit.point.x / gridsize) * gridsize + gridsize / 2, 1.5f, Mathf.Floor(hit.point.z / gridsize) * gridsize + gridsize / 2);
-                if (!positionsOfPlacedObjects.Contains(calculatedGridPos))
-                {
-                    if (selectediventorySlot != 3)
+        {
+            if(buildmode == true)
+            {                        
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward,out hit, 20, ground))
+                {                                    
+                    calculatedGridPos = new Vector3(Mathf.Floor(hit.point.x / gridsize) * gridsize + gridsize / 2, 1.5f, Mathf.Floor(hit.point.z / gridsize) * gridsize + gridsize / 2);
+                    if (!positionsOfPlacedObjects.Contains(calculatedGridPos))
                     {
-                        lastInstantiatedObject = Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));
-                        positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position);
-                    }
-                    else
-                    {
-                        if (!positionsOfPlacedObjects.Contains(calculatedGridPos + new Vector3(gridsize, 0, 0)))
+                        if (selectediventorySlot != 3)
                         {
                             lastInstantiatedObject = Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));
                             positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position);
-                            positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position + new Vector3(gridsize, 0, 0));
                         }
                         else
                         {
-                            cantPlaceHereText.SetActive(true);
-                            Invoke("CantPlaceTextMethod", 2.0f);
+                            if (!positionsOfPlacedObjects.Contains(calculatedGridPos + new Vector3(gridsize, 0, 0)))
+                            {
+                                lastInstantiatedObject = Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));
+                                positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position);
+                                positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position + new Vector3(gridsize, 0, 0));           
+                            }
+                            else
+                            {
+                                cantPlaceHereText.SetActive(true);
+                                Invoke("CantPlaceTextMethod", 2.0f);
+                            }
                         }
                     }
-                }
-                else
-                {
-                    cantPlaceHereText.SetActive(true);
-                    Invoke("CantPlaceTextMethod", 2.0f);
+                    else
+                    {
+                        cantPlaceHereText.SetActive(true);
+                        Invoke("CantPlaceTextMethod", 2.0f);
+                    }
                 }
             }
         }
+        
+        if(Input.GetKeyDown("q"))
+        {
+            if(buildmode == true)
+            {
+                buildmode = false;
+                buildUI.SetActive(false);
+            }
+            else
+            {
+                buildmode = true;
+                buildUI.SetActive(true);
+            }
+        }
+        
         if (Input.GetKeyDown("t"))
         {
             foreach (Vector3 vector3 in positionsOfPlacedObjects)
