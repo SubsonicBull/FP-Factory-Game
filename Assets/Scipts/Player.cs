@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float gravity;
     public float gridsize = 10;
     public float distancetoground;
+    public float jumpheight;
     public CharacterController crcon;
     public Transform groundcheck;
     public Transform cam;
@@ -52,6 +53,10 @@ public class Player : MonoBehaviour
         else
         {
             velocity.y += gravity * Time.deltaTime;
+        }
+        if (Input.GetKey("space") && isGrounded)
+        {            
+                velocity = new Vector3(0, jumpheight, 0);            
         }
 
         float x = Input.GetAxis("Horizontal");
