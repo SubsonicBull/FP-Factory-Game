@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
             {                        
                 if (Physics.Raycast(cam.transform.position, cam.transform.forward,out hit, 20, ground))
                 {                                    
-                    calculatedGridPos = new Vector3(Mathf.Floor(hit.point.x / gridsize) * gridsize + gridsize / 2, 1.5f, Mathf.Floor(hit.point.z / gridsize) * gridsize + gridsize / 2);
+                    calculatedGridPos = new Vector3(Mathf.Floor(hit.point.x / gridsize) * gridsize + gridsize / 2, hit.point.y, Mathf.Floor(hit.point.z / gridsize) * gridsize + gridsize / 2);
                     if (!positionsOfPlacedObjects.Contains(calculatedGridPos))
                     {
                         if (selectediventorySlot != 3)
