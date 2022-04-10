@@ -4423,10 +4423,15 @@ MonoBehaviour:
   cantPlaceHereText: {fileID: 1207842666}
   flashlight: {fileID: 948729044}
   buildUI: {fileID: 1386171479}
+  pipe: {fileID: 7647147150507850834, guid: 583741e26f86f944b924e8a8e10bd78f, type: 3}
   ground:
     serializedVersion: 2
     m_Bits: 64
+  machine:
+    serializedVersion: 2
+    m_Bits: 128
   buildmode: 0
+  pipeOffset: {x: 0, y: 3, z: 0}
   inventorySlots:
   - {fileID: 2047797482}
   - {fileID: 1696299046}
