@@ -24,10 +24,11 @@ public class Player : MonoBehaviour
     int selectediventorySlot;    
     RaycastHit hit;       
     Vector3 calculatedGridPos;
+    Vector2 calculatedGridPos2d;
     public Image[] inventorySlots = new Image[5];
     public GameObject[] placableObjects = new GameObject[5];
     GameObject lastInstantiatedObject;
-    List<Vector3> positionsOfPlacedObjects = new List<Vector3>();
+    List<Vector2> positionsOfPlacedObjects = new List<Vector2>();
 
 
     private void Start()
@@ -96,20 +97,20 @@ public class Player : MonoBehaviour
                 if (Physics.Raycast(cam.transform.position, cam.transform.forward,out hit, 20, ground))
                 {                                    
                     calculatedGridPos = new Vector3(Mathf.Floor(hit.point.x / gridsize) * gridsize + gridsize / 2, hit.point.y, Mathf.Floor(hit.point.z / gridsize) * gridsize + gridsize / 2);
-                    if (!positionsOfPlacedObjects.Contains(calculatedGridPos))
+                    calculatedGridPos2d = new Vector2(calculatedGridPos.x, calculatedGridPos.z);
+                    if (!positionsOfPlacedObjects.Contains(calculatedGridPos2d))
                     {
                         if (selectediventorySlot != 3)
                         {
                             lastInstantiatedObject = Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));
-                            positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position);
+                            positionsOfPlacedObjects.Add(calculatedGridPos2d);
                         }
                         else
                         {
-                            if (!positionsOfPlacedObjects.Contains(calculatedGridPos + new Vector3(gridsize, 0, 0)))
+                            if (!positionsOfPlacedObjects.Contains(calculatedGridPos2d + new Vector2 (gridsize, 0)) && !positionsOfPlacedObjects.Contains(calculatedGridPos2d - new Vector2(gridsize, 0)))
                             {
                                 lastInstantiatedObject = Instantiate(placableObjects[selectediventorySlot], calculatedGridPos, Quaternion.Euler(0f, 0f, 0f));
-                                positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position);
-                                positionsOfPlacedObjects.Add(lastInstantiatedObject.GetComponent<Transform>().position + new Vector3(gridsize, 0, 0));           
+                                positionsOfPlacedObjects.Add(calculatedGridPos2d);           
                             }
                             else
                             {

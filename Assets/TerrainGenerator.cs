@@ -6,6 +6,8 @@ public class TerrainGenerator : MonoBehaviour
 {
     public Texture terrainTexture;
 
+    public GameObject water;
+
     public int textureXtiling = 20;
     public int textureYtiling = 20;
 
@@ -19,6 +21,8 @@ public class TerrainGenerator : MonoBehaviour
     public float offsetX = 100f;
     public float offsetY = 100f;
 
+    public float waterheight;
+
     private void Start()
     {
         offsetX = Random.Range(0f, 9999f);
@@ -27,7 +31,7 @@ public class TerrainGenerator : MonoBehaviour
         Terrain terrain = GetComponent<Terrain>();
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
 
-
+        GenerateWater();
     }
     TerrainData GenerateTerrain(TerrainData terrainData)
     {
@@ -62,5 +66,10 @@ public class TerrainGenerator : MonoBehaviour
     {
         Texture generatedTexture = terrainTexture;
         return generatedTexture;
+    }
+    void GenerateWater()
+    {
+        water.transform.localScale= new Vector3(width / 10, 1, height / 10);
+        water.transform.position = transform.position + new Vector3(width /2, waterheight, height/2);
     }
 }
