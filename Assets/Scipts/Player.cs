@@ -5,43 +5,53 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    
-    float current_speed;
     public float normal_speed;
     public float gravity;
     public float gridsize = 10;
     public float distancetoground;
     public float jumpheight;
-    public Workbench workbench_script;
+    public float interaction_range;
+    float current_speed;
+
     public CharacterController crcon;
+
     public Transform groundcheck;
     public Transform cam;
+
     public GameObject cantPlaceHereText;
     public GameObject flashlight;
     public GameObject buildUI;
     public GameObject pipe;
     public GameObject workbench_ui;
-    public LayerMask ground;
-    public LayerMask interactable;
-    public LayerMask machine;
-    public bool buildmode;
-    public bool interacting;
-    public bool in_menu;
-    public Vector3 pipeOffset;
-    Vector3 velocity;
-    bool isGrounded;    
-    int selectediventorySlot;    
-    RaycastHit hit;
-    RaycastHit machinehit;
-    Vector3 calculatedGridPos;
-    Vector2 calculatedGridPos2d;
-    public Image[] inventorySlots = new Image[5];
-    public GameObject[] placableObjects = new GameObject[5];
-    GameObject lastInstantiatedObject;
-    List<Vector2> positionsOfPlacedObjects = new List<Vector2>();
+    public GameObject researchtable_ui;
     GameObject pipeOutput;
     GameObject pipeInput;
     GameObject lastInstantiatedPipe;
+    GameObject lastInstantiatedObject;
+
+    public LayerMask ground;
+    public LayerMask interactable;
+    public LayerMask machine;
+
+    public bool buildmode;
+    public bool interacting;
+    public bool in_menu;
+    bool isGrounded;  
+
+    public Vector3 pipeOffset;
+    Vector3 calculatedGridPos;
+    Vector2 calculatedGridPos2d;
+    Vector3 velocity;
+
+    int selectediventorySlot;    
+
+    RaycastHit hit;
+    RaycastHit machinehit;
+
+    public Image[] inventorySlots = new Image[5];
+    public GameObject[] placableObjects = new GameObject[5];
+
+    List<Vector2> positionsOfPlacedObjects = new List<Vector2>();
 
 
     private void Start()
@@ -56,6 +66,7 @@ public class Player : MonoBehaviour
         pipeOutput = null;
         interacting = false;
         workbench_ui.SetActive(false);
+        researchtable_ui.SetActive(false);
         in_menu = false;
     }
 
@@ -222,14 +233,21 @@ public class Player : MonoBehaviour
             if(in_menu)
             {
                 workbench_ui.SetActive(false);
+                researchtable_ui.SetActive(false);
                 in_menu = false;
             }
-            else if(Physics.Raycast(cam.transform.position,cam.transform.forward, out hit, 50, interactable))
+            else if(Physics.Raycast(cam.transform.position,cam.transform.forward, out machinehit, interaction_range, machine))
             {
-                if(workbench_script.in_range)
+                if(machinehit.collider.gameObject.name.Contains("workbench"))
                 {
-                    workbench_ui.SetActive(true);
                     in_menu = true;
+                    workbench_ui.SetActive(true);
+                }
+
+                if(machinehit.collider.gameObject.name.Contains("researchtable"))
+                {
+                    in_menu = true;
+                    researchtable_ui.SetActive(true);
                 }
             }
         }

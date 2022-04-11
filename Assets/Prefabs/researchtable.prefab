@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7835743469115434707}
   - component: {fileID: 8862238757047960743}
   - component: {fileID: 6014285843014928957}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,6 +81,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1867079242468850668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 388621816037754992}
+  - component: {fileID: 4632511436079230053}
+  - component: {fileID: 8420269532249856188}
+  m_Layer: 7
+  m_Name: researchtable_collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &388621816037754992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867079242468850668}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.944, z: -0.65}
+  m_LocalScale: {x: 4.1643, y: 2.5659947, z: 3.8902972}
+  m_Children: []
+  m_Father: {fileID: 3967156546156894985}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4632511436079230053
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867079242468850668}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &8420269532249856188
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867079242468850668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99999994, y: 0.99999994, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4253915025325117062
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +146,7 @@ GameObject:
   - component: {fileID: 8827861068403209970}
   - component: {fileID: 1118248634667772461}
   - component: {fileID: 4322224932761258944}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +241,7 @@ GameObject:
   - component: {fileID: 3967156546156894985}
   - component: {fileID: 45581669050291372}
   - component: {fileID: 2829675640441266278}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: researchtable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,6 +265,7 @@ Transform:
   - {fileID: 2920009022634348988}
   - {fileID: 5138514307256871428}
   - {fileID: 2375889286754366071}
+  - {fileID: 388621816037754992}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -275,7 +329,7 @@ GameObject:
   - component: {fileID: 5138514307256871428}
   - component: {fileID: 6564217182842490247}
   - component: {fileID: 7433224368201587096}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +410,7 @@ GameObject:
   - component: {fileID: 589707703059293519}
   - component: {fileID: 2145010584512153442}
   - component: {fileID: 6574398356158635763}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -437,7 +491,7 @@ GameObject:
   - component: {fileID: 2920009022634348988}
   - component: {fileID: 7815479435210484912}
   - component: {fileID: 4375641710248371111}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2375889286754366071}
   - component: {fileID: 7635917869886733796}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
