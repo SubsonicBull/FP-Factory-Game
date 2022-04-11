@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     
-    public float speed;
+    float current_speed;
+    public float normal_speed;
     public float gravity;
     public float gridsize = 10;
     public float distancetoground;
     public float jumpheight;
+    public Workbench workbench_script;
     public CharacterController crcon;
     public Transform groundcheck;
     public Transform cam;
@@ -18,9 +20,13 @@ public class Player : MonoBehaviour
     public GameObject flashlight;
     public GameObject buildUI;
     public GameObject pipe;
+    public GameObject workbench_ui;
     public LayerMask ground;
+    public LayerMask interactable;
     public LayerMask machine;
     public bool buildmode;
+    public bool interacting;
+    public bool in_menu;
     public Vector3 pipeOffset;
     Vector3 velocity;
     bool isGrounded;    
@@ -48,12 +54,24 @@ public class Player : MonoBehaviour
         buildUI.SetActive(false);
         pipeInput = null;
         pipeOutput = null;
+        interacting = false;
+        workbench_ui.SetActive(false);
+        in_menu = false;
     }
 
     void Update()
     {
         //movement
 
+        if(in_menu)
+        {
+            current_speed = 0;
+        }
+        else
+        {
+            current_speed = normal_speed;
+        }
+        
         isGrounded = Physics.CheckSphere(groundcheck.position, distancetoground, ground);
 
         if(isGrounded)
@@ -73,7 +91,7 @@ public class Player : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
-        crcon.Move(move * speed * Time.deltaTime);
+        crcon.Move(move * current_speed * Time.deltaTime);
         crcon.Move(velocity);
 
         //Inventory
@@ -195,6 +213,25 @@ public class Player : MonoBehaviour
                 flashlight.SetActive(true);
             }
 
+        }
+
+        //Interacting
+
+        if(Input.GetKeyDown("e"))
+        {
+            if(in_menu)
+            {
+                workbench_ui.SetActive(false);
+                in_menu = false;
+            }
+            else if(Physics.Raycast(cam.transform.position,cam.transform.forward, out hit, 50, interactable))
+            {
+                if(workbench_script.in_range)
+                {
+                    workbench_ui.SetActive(true);
+                    in_menu = true;
+                }
+            }
         }
     }
     void CantPlaceTextMethod()

@@ -7,6 +7,7 @@ public class MouseLook : MonoBehaviour
 
     public float Sensitivity = 100f;
     public Transform playerBody;
+    public Player player_script;
     float xRot = 0f;
 
     private void Start()
@@ -16,13 +17,23 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * Sensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * Sensitivity * Time.deltaTime;
+        if(!player_script.in_menu)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
 
-        xRot -= mouseY;
-        xRot = Mathf.Clamp(xRot, -90f, 90f);
+            float mouseX = Input.GetAxis("Mouse X") * Sensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * Sensitivity * Time.deltaTime;
 
-        transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
+            xRot -= mouseY;
+            xRot = Mathf.Clamp(xRot, -90f, 90f);
+
+            transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+            playerBody.Rotate(Vector3.up * mouseX);
+        }
+
+        if(player_script.in_menu)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 }
